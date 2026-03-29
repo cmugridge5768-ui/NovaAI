@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NovaAI - Your Personal AI Assistant</title>
+<style>
+    body {margin:0;font-family:'Segoe UI',sans-serif;background:#0a0a0a;color:white;text-align:center;}
+    header {background: rgba(15,15,15,0.9); padding:20px; border-bottom:1px solid #00e5ff;}
+    header h1 {display:inline-flex;align-items:center;gap:10px;color:#00e5ff;margin:0;}
+    nav a {color:white;margin:0 12px;text-decoration:none;font-weight:bold;}
+    nav a:hover {color:#00bcd4;}
+    section {padding:50px 20px;}
+    .btn {background:#00e5ff;color:black;padding:12px 28px;border-radius:6px;text-decoration:none;font-weight:bold;display:inline-block;margin-top:20px;cursor:pointer;}
+    .btn:hover {background:#00bcd4;}
+    input,textarea {width:80%;padding:12px;margin:10px 0;border-radius:6px;border:none;}
+    #chatbox {margin-top:20px;text-align:left;max-width:700px;margin-left:auto;margin-right:auto;}
+    .message {padding:8px 12px;margin:6px 0;border-radius:8px;}
+    .user {background:#00bcd4;color:black;text-align:right;}
+    .nova {background:#111;color:#00e5ff;text-align:left;}
+    footer {padding:25px;border-top:1px solid #00e5ff;}
+</style>
+</head>
+<body>
+
+<header>
+    <h1>
+        <svg width="40" height="40" viewBox="0 0 100 100">
+          <defs>
+            <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#00e5ff;stop-opacity:1" />
+              <stop offset="100%" style="stop-color:#ffffff;stop-opacity:1" />
+            </linearGradient>
+          </defs>
+          <text x="10" y="70" font-size="80" font-family="Segoe UI" fill="url(#grad1)">N</text>
+        </svg>
+        NovaAI
+    </h1>
+    <nav>
+        <a href="#about">About</a>
+        <a href="#chat">Chat</a>
+        <a href="#subscribe">Subscribe</a>
+    </nav>
+</header>
+
+<section id="about">
+    <h2>About NovaAI</h2>
+    <p>NovaAI is your personal AI assistant. Ask questions, get answers, and explore AI-powered help just like ChatGPT.</p>
+</section>
+
+<section id="chat">
+    <h2>Chat with NovaAI</h2>
+    <input id="userInput" type="text" placeholder="Ask me anything...">
+    <button class="btn" onclick="sendMessage()">Send</button>
+
+    <div id="chatbox"></div>
+</section>
+
+<section id="subscribe">
+    <h2>Subscribe</h2>
+    <p>Sign up for free or premium access to NovaAI!</p>
+    <a class="btn" href="#">Sign Up / Login</a>
+</section>
+
+<footer>
+    <p>© 2026 NovaAI</p>
+</footer>
+
+<script>
+// All-in-one AI simulation
+function getNovaAIResponse(message) {
+    // Simulated AI responses
+    const lower = message.toLowerCase();
+    if(lower.includes("hello") || lower.includes("hi")) return "Hello! I'm NovaAI. How can I help you today?";
+    if(lower.includes("your name")) return "I am NovaAI, your personal AI assistant!";
+    if(lower.includes("code")) return "I can help you learn to code, explain concepts, or give coding tips!";
+    if(lower.includes("help")) return "Sure! Ask me anything, and I'll do my best to assist you.";
+    return "This is a simulated response. In the full version, NovaAI would answer your question using AI.";
+}
+
+async function sendMessage() {
+    const input = document.getElementById("userInput");
+    const chatbox = document.getElementById("chatbox");
+    const userMessage = input.value.trim();
+    if(!userMessage) return;
+
+    // Show user message
+    const userDiv = document.createElement("div");
+    userDiv.className = "message user";
+    userDiv.textContent = userMessage;
+    chatbox.appendChild(userDiv);
+    input.value = "";
+
+    // Show loading for NovaAI
+    const novaDiv = document.createElement("div");
+    novaDiv.className = "message nova";
+    novaDiv.textContent = "NovaAI is thinking...";
+    chatbox.appendChild(novaDiv);
+
+    // Simulate delay
+    await new Promise(resolve => setTimeout(resolve, 800));
+
+    // Get AI response
+    novaDiv.textContent = getNovaAIResponse(userMessage);
+    chatbox.scrollTop = chatbox.scrollHeight;
+}
+</script>
+
+</body>
+</html>
